@@ -1,0 +1,9 @@
+name: Issues Information
+on: issues
+jobs:
+    info:
+        runs-on: ubunut-latest
+        steps:
+            - name: Output Issue context
+              run: echo "${{ toJson(github.event) }}"
+        
