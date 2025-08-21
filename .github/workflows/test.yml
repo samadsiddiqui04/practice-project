@@ -1,0 +1,27 @@
+name: Example Workflow
+on:
+  workflow_dispatch:
+    inputs:
+      PackageId:
+        description: 'ID of the package'
+        required: true
+      ApexCompile:
+        description: 'Compile option'
+        required: true
+        default: 'package'
+        type: choice  # Specify the input type as 'choice'
+        options:
+          - package
+          - all
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Print Variables
+        run: |
+          echo "PackageId: ${{ github.event.inputs.PackageId }}"
+          echo "ApexCompile: ${{ github.event.inputs.ApexCompile }}"
